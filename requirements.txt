@@ -1,0 +1,9 @@
+pillow
+pycryptodome
+keyring
+python-dotenv
+sqlalchemy
+argon2-cffi
+pyperclip
+watchdog
+PyQt6
