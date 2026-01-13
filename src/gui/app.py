@@ -5,6 +5,7 @@ import sys
 import os
 from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout
 from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QIcon
 from src.config import COLORS, APP_NAME, APP_VERSION, DB_NAME
 from src.vault import VaultManager
 from src.gui.styles import get_global_styles
@@ -24,6 +25,14 @@ class LDCMApp(QMainWindow):
         self.setWindowTitle(f"{APP_NAME} v{APP_VERSION}")
         self.setMinimumSize(1000, 700)
         self.resize(1200, 800)
+        
+        # Set window icon - go up from src/gui/app.py to project root
+        base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        icon_path = os.path.join(base_path, "images", "logo.png")
+        if os.path.exists(icon_path):
+            icon = QIcon(icon_path)
+            self.setWindowIcon(icon)
+            QApplication.instance().setWindowIcon(icon)
         
         # Initialize vault
         db_path = os.path.join(os.path.expanduser("~"), ".ldcm", DB_NAME)
